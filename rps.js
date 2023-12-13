@@ -4,11 +4,13 @@ function getComputerChoice(){
     console.log(num);
     let option = options[num];
     console.log(option);
-    return option;
+    let computerChoice = option.toString();
+    return computerChoice;
 }
 
 function getPlayerChoice(){
-    let playerSelection = prompt("Please select Rock, Paper, or Scissors");
+    let answer = prompt("Please select Rock, Paper, or Scissors");
+    let playerSelection = answer.toString();
     return playerSelection;
 }
 
@@ -27,6 +29,7 @@ function playRound(playerSelection, computerSelection){
         else{
             let res = "You Win! Rock beats Scissors";
             console.log(res);
+            return res;
         }
     }
 
@@ -34,10 +37,12 @@ function playRound(playerSelection, computerSelection){
         if (computerSelection == "rock"){
             let res = "You Win! Paper beats Rock";
             console.log(res);
+            return res;
         }
         else{
             let res = "You Lose! Scissors beats Paper";
             console.log(res);
+            return res;
         }
     }
 
@@ -45,10 +50,44 @@ function playRound(playerSelection, computerSelection){
         if (computerSelection == "rock"){
             let res = "You Lose! Rock beats Scissors";
             console.log(res);
+            return res;
         }
         else{
             let res = "You Win! Scissors beats Paper";
             console.log(res);
+            return res;
+        }
+    }
+}
+
+function game(){
+    let playerCount = 0;
+    let computerCount = 0;
+    for (let i = 0; i < 10; i++){
+        let result = playRound(getPlayerChoice(), getComputerChoice());
+
+        if(result.includes("Win")){
+            playerCount++;
+        }
+
+        else if (result.includes("Lose")){
+            computerCount++;
+        }
+
+        else if (result.includes("Tie")){
+            continue;
+        }
+
+        if (playerCount == 3){
+            let res = "Congratulations, you win!"
+            console.log(res);
+            return res;
+        }
+
+        if (computerCount == 3){
+            let res = "You lose, try again!"
+            console.log(res);
+            return res;
         }
     }
 }
